@@ -7,13 +7,22 @@
 from django.utils.functional import lazy
 
 from funfactory.settings_base import *  # noqa
+import dj_database_url
 
-# No database yet. Override in local.py.
-# Need at least this for Django to run.
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.dummy',
-    },
+
+DATABASES = {'default': dj_database_url.config()}
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '')
+HMAC_KEYS = {'2013-09-24': os.environ.get('DJANGO_HMAC_KEY', '')}
+DEBUG = os.environ.get('DJANGO_DEBUG', False)
+SITE_URL = os.environ.get('SITE_URL', 'http://localhost:8000')
+LESS_PREPROCESS = os.environ.get('LESS_PREPROCESS', False)
+LESS_BIN = os.environ.get('LESSC_BIN', '/usr/local/bin/lessc')
+
+RNA = {
+    'BASE_URL': os.environ.get(
+        'RNA_BASE_URL', 'https://nucleus.paas.allizom.org/rna/'),
+    'LEGACY_API': os.environ.get('RNA_LEGACY_API', False)
 }
 
 # Override in local.py for memcached.
