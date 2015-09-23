@@ -11,11 +11,12 @@ docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD -e $DOCKER_USERNAME@example
 
 # If pull request use $ghprbActualCommit otherwise use $GIT_COMMIT
 COMMIT="${ghprbActualCommit:=$GIT_COMMIT}"
+IMAGE=`echo jenkins${JOB_NAME}${BUILD_NUMBER}| sed s/_//g`_web
 
-# Tag using git hash
-docker tag -f `echo jenkins${JOB_NAME}${BUILD_NUMBER}| sed s/_//g`_web $DOCKER_REPOSITORY:$COMMIT
+docker tag -f $IMAGE $DOCKER_REPOSITORY:$COMMIT
 docker push $DOCKER_REPOSITORY:$COMMIT
 
-# Tag as latest
-docker tag -f `echo jenkins${JOB_NAME}${BUILD_NUMBER}| sed s/_//g`_web $DOCKER_REPOSITORY:latest
-docker push $DOCKER_REPOSITORY:latest
+if [[ "$GIT_BRANCH" == "origin/master" ]]; then
+    docker tag -f $IMAGE $DOCKER_REPOSITORY:latest
+    docker push $DOCKER_REPOSITORY:latest
+fi
