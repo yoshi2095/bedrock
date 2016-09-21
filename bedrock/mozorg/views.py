@@ -260,6 +260,11 @@ def home(request, template='mozorg/home/home.html'):
     if locale == 'en-US':
         template = 'mozorg/home/home-en-US.html'
 
+        variant = request.GET.get('v', '')
+
+        if variant in ['a', 'b', 'c']:
+            template = 'mozorg/home/home-en-US-{0}.html'.format(variant)
+
     return l10n_utils.render(
         request, template, {
             'has_contribute': lang_file_is_active('mozorg/contribute'),
