@@ -12,6 +12,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/base/mozilla-video-poster.less',
             'css/newsletter/moznewsletter-subscribe.less',
+            'css/pebbles/components/google-search.scss',
             'css/mozorg/about.less',
         ),
         'output_filename': 'css/about-bundle.css',
@@ -88,6 +89,7 @@ PIPELINE_CSS = {
     'foundation': {
         'source_filenames': (
             'css/newsletter/moznewsletter-subscribe.less',
+            'css/pebbles/components/google-search.scss',
             'css/foundation/foundation.less',
         ),
         'output_filename': 'css/foundation-bundle.css',
@@ -661,6 +663,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/base/mozilla-modal.less',
             'css/base/mozilla-share-cta.less',
+            'css/pebbles/components/google-search.scss',
             'css/mozorg/manifesto.less',
         ),
         'output_filename': 'css/manifesto-bundle.css',
@@ -1560,6 +1563,12 @@ PIPELINE_JS = {
             'js/privacy/privacy.js',
         ),
         'output_filename': 'js/privacy-bundle.js',
+    },
+    'search-activist': {
+        'source_filenames': (
+            'js/base/search-activist.js',
+        ),
+        'output_filename': 'js/search-activist-bundle.js',
     },
     'smarton': {
         'source_filenames': (
