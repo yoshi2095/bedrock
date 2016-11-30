@@ -10,12 +10,6 @@
   {% stylesheet 'foundation' %}
 {% endblock %}
 
-{% block js %}
-  {% if LANG.startswith('en-') and switch('mozorg-search-activist') %}
-    {% javascript 'search-activist' %}
-  {% endif %}
-{% endblock %}
-
 {% block body_class %}sand{% endblock %}
 
 {% set navigation_bar = [
@@ -36,15 +30,7 @@
 {% block content %}
   <main>
     <header class="page-header">
-    {% if LANG.startswith('en-') and switch('mozorg-search-activist') %}
-      <aside id="moz-search" class="moz-search moz-search-activist" data-terms="{{ _('Net Neutrality, Encryption, Surveillance, Copyright Law, Cybersecurity') }}">
-        <div class="content">
-          <label class="search-label" for="gsc-i-id1"><span class="search-label-prefix">{{ _('Search Mozilla:') }}</span> <span class="search-label-term">{{ _('Cybersecurity') }}</span></label>
-          <gcse:search gname="mozsearch"></gcse:search>
-        </div>
-      </aside>
-    {% endif %}
-
+      {% block search %}search{% endblock %}
       <h1><span class="content">{{ _('The Mozilla Foundation') }}</span></h1>
     </header>
     <section>

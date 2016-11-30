@@ -17,6 +17,12 @@
 
 {% block body_id %}manifesto-landing{% endblock %}
 
+{% block experiments %}
+  {% if LANG.startswith('en-') and switch('experiment-search-activist') %}
+    {% javascript 'experiment-search-activist' %}
+  {% endif %}
+{% endblock %}
+
 {% block string_data %}
   data-principle-read-more='{{ _('See more…') }}'
   data-principle-nav-prev='{{ _('Previous principle') }}'
@@ -58,7 +64,7 @@
       </div>
     </header>
 
-  {% if LANG.startswith('en-') and switch('mozorg-search-activist') %}
+  {% if version == 'b' and switch('mozorg-search-activist') %}
     <aside id="moz-search" class="moz-search moz-search-activist" data-terms="{{ _('Net Neutrality, Encryption, Surveillance, Copyright Law, Cybersecurity') }}">
       <div class="content">
         <label class="search-label" for="gsc-i-id1"><span class="search-label-prefix">{{ _('Search Mozilla:') }}</span> <span class="search-label-term">{{ _('Cybersecurity') }}</span></label>
@@ -338,7 +344,7 @@
   <![endif]-->
   {% javascript 'manifesto' %}
 
-  {% if LANG.startswith('en-') and switch('mozorg-search-activist') %}
+  {% if version == 'b' and switch('mozorg-search-activist') %}
     {% javascript 'search-activist' %}
   {% endif %}
 {% endblock %}
