@@ -372,6 +372,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/nightly_whatsnew-bundle.css',
     },
+    'firefox_new_firstrun': {
+        'source_filenames': (
+            'css/firefox/firstrun/new-firstrun.less',
+            'css/base/mozilla-fxa-iframe.less',
+        ),
+            'output_filename': 'css/firefox_new-firstrun-bundle.css',
+    },
     'firefox_firstrun': {
         'source_filenames': (
             'css/sandstone/sandstone.less',
@@ -1248,6 +1255,12 @@ PIPELINE_JS = {
             'js/firefox/firstrun/firstrun.js',
         ),
         'output_filename': 'js/firefox_firstrun-bundle.js',
+    },
+    'firefox_new_firstrun': {
+        'source_filenames': (
+            'js/firefox/firstrun/new-firstrun.js',
+        ),
+        'output_filename': 'js/firefox_new-firstrun-bundle.js',
     },
     'firefox_developer_firstrun': {
         'source_filenames': (
