@@ -48,7 +48,7 @@ if [ "${DRIVER}" = "Remote" ]; then
   done
 fi
 
-docker run -v `pwd`/results:/app/results \
+docker run -u $(id -u) -v `pwd`/results:/app/results \
   ${DOCKER_LINKS[@]} \
   -e BASE_URL=${BASE_URL} \
   -e DRIVER=${DRIVER} \

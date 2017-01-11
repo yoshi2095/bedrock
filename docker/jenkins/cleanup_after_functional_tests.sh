@@ -1,6 +1,11 @@
 #!/bin/bash
 
 if [ "${DRIVER}" = "Remote" ]; then
+
+    for NODE_NUMBER in `seq ${NUMBER_OF_NODES:-5}`; do
+      docker logs bedrock-selenium-node-${NODE_NUMBER}-${BUILD_NUMBER} > ${WORKSPACE}/results/geckodriver-${NODE_NUMBER}-${BUILD_NUMBER}.log
+    done;
+
     docker stop bedrock-code-${BUILD_NUMBER}
     docker rm bedrock-code-${BUILD_NUMBER}
 
