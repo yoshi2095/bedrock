@@ -7,8 +7,8 @@
     let scene = document.getElementById('scene');
     let skipbutton = document.getElementById('skip-button');
 
-    let onVerificationComplete = () => {
-        scene.setAttribute('sign-in', 'true');
+    let onVerificationComplete = function () {
+        scene.dataset.signIn = 'true';
         document.getElementById('sunrise').addEventListener('transitionend', function(event) {
             if (event.propertyName === 'transform') {
                 window.setTimeout(function () {
@@ -29,11 +29,11 @@
         });
     });
 
-    scene.setAttribute('sunrise', 'true');
+    scene.dataset.sunrise = 'true';
 
     document.getElementById('sky').addEventListener('transitionend', function(event) {
         if (event.propertyName === 'opacity') {
-            scene.setAttribute('modal', 'true');
+            scene.dataset.modal = 'true';
         }
     }, false);
 

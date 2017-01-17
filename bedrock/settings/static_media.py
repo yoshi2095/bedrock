@@ -1259,6 +1259,8 @@ PIPELINE_JS = {
     'firefox_new_firstrun': {
         'source_filenames': (
             'js/firefox/firstrun/new-firstrun.js',
+            'js/base/mozilla-fxa-iframe.js',
+            'js/base/uitour-lib.js',
         ),
         'output_filename': 'js/firefox_new-firstrun-bundle.js',
     },

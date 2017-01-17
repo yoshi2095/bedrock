@@ -2,145 +2,144 @@
 @import "../../sandstone/fira-fonts.less";
 
 * {
-  font-family: "Fira Sans Light", Fira;
+    .fira-sans-light;
 }
 
 body{
-  overflow: hidden;
+    overflow: hidden;
 }
 
 img {
-  width: 100%;
-  height: auto;
-  min-width: 100%;
-  min-height: 100%;
-  overflow: hidden;
-  margin: auto;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  object-fit: cover;
+    width: 100%;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    object-fit: cover;
 }
 
 #night-foreground-fox, #foreground-fox {
-  z-index: 3;
+    z-index: 3;
 }
 
 #scene-blur, #mountains-trees, #foreground-fox, #sky {
-  opacity: 0;
+    opacity: 0;
 }
 
 #scene-blur {
-  z-index: 4;
+    z-index: 4;
 }
 
 #fxa {
-  border: none;
-  position: relative;
+    border: none;
+    position: relative;
 }
 
 .fxaccounts-container {
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 600px;
-  height: 450px;
-  background: white;
-  z-index: 10;
-  opacity: 0;
-  border-radius: 5px;
-  padding: 5px 30px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 600px;
+    height: 450px;
+    background: white;
+    z-index: 10;
+    opacity: 0;
+    border-radius: 5px;
+    padding: 5px 30px;
 }
 
 #left-divider {
-  width: 45%;
-  height: 100%;
-  float: left;
+    width: 45%;
+    height: 100%;
+    float: left;
 
-  img {
-    position: relative;
-    width: 250px;
-    height: auto;
-  }
+    img {
+        position: relative;
+        width: 250px;
+        height: auto;
+    }
 
-  p {
-    margin: 0;
-    line-height: 150%;
-    font-size: 1.2em;
-  }
+    p {
+        margin: 0;
+        line-height: 150%;
+        font-size: 1.2em;
+    }
 
-  a {
-    font-size: .9em;
-  }
+    a {
+        font-size: .9em;
+    }
 }
 
 #title {
-  font-size: 2em;
-  margin: 20px 0;
+    font-size: 2em;
+    margin: 20px 0;
 }
 
-#scene[sunrise=true] {
+#scene[data-sunrise=true] {
 
-  button {
-    position: absolute;
-    width: 120px;
-    height: 30px;
-    bottom: 20px;
-    right: 145px;
-  }
+    button {
+        position: absolute;
+        width: 120px;
+        height: 30px;
+        bottom: 20px;
+        right: 145px;
+        cursor: pointer;
+    }
 
-  #sunrise {
-    transition: transform 1.5s ease-in-out .5s;
-    transform: translate3d(0px, -20%, 0px);
-  }
+    #sunrise {
+        transition: transform 1.5s ease-in-out .5s;
+        transform: translate3d(0, -20%, 0);
+    }
 
-  #mountains-trees, #foreground-fox, #sky {
-    transition: opacity 2s ease-in-out .5s;
-    opacity: 1;
-  }
+    #mountains-trees, #foreground-fox, #sky {
+        transition: opacity 2s ease-in-out .5s;
+        opacity: 1;
+    }
 }
 
-#scene[modal=true] {
-  #night-sky, #night-mountains-trees, #night-foreground-fox {
-    display: none;
-  }
+#scene[data-modal=true] {
 
-  #scene-blur, .fxaccounts-container {
-    transition: opacity .3s;
-    opacity: 1;
-  }
+    #night-sky, #night-mountains-trees, #night-foreground-fox {
+        display: none;
+    }
+
+    #scene-blur, .fxaccounts-container {
+        transition: opacity .3s;
+        opacity: 1;
+    }
 }
 
-#scene[sign-in=true] {
+#scene[data-sign-in=true] {
 
-  #scene-blur, .fxaccounts-container {
-    display: none;
-  }
+    #scene-blur, .fxaccounts-container {
+        display: none;
+    }
 
-  img {
-    transition: transform 1.5s ease-in-out .2s !important;
-  }
+    #sunrise, #sky, #mountains-trees, #foreground-fox {
+        opacity: 1;
+        transition: transform 1.5s ease-in-out .2s;
+    }
 
-  #sunrise {
-    transform-origin: 50% 80%;
-    transform: scale(16);
-  }
+    #sunrise {
+        transform-origin: 50% 80%;
+        transform: scale(16);
+    }
 
-  #sky {
-    transform: scale(4);
-  }
+    #sky {
+        transform: scale(4);
+    }
 
-  #mountains-trees{
-    transform: scale(2) translate3d(0px, 30%, 0);
-  }
+    #mountains-trees {
+        transform: scale(2) translate3d(0, 30%, 0);
+    }
 
-  #foreground-fox{
-    transform: scale(3) translate3d(0px, 30%, 0px)
-  }
-
-  #mountains-trees, #foreground-fox, #sky {
-    opacity: 1;
-  }
+    #foreground-fox {
+        transform: scale(3) translate3d(0, 30%, 0)
+    }
 }

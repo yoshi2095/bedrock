@@ -1,39 +1,37 @@
 {% extends "bare.html" %}
 {% stylesheet 'firefox_new_firstrun' %}
-
-{% block content %}
-    <div>
-        <div id="scene">
-            <div class="fxaccounts-container">
-                <h2 id="title"> Already Using Firefox?</h2>
-                <div id="left-divider">
-                    <p>Sign in to your account and we'll sync the bookmarks, passwords and other great things you've saved to Firefox on other devices.</p>
-                    <div>
-                      <img src="/media/img/firefox/firstrun-horizon/sample.png">
-                    </div>
-                    <a href = "https://www.mozilla.org/en-US/firefox/sync/"> Learn more about Firefox Accounts</a>
-                </div>
-              <div class="fxaccounts" id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}">
-                  <iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}signin?utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source=firstrun&amp;utm_content=fx-{{ version }}&amp;entrypoint=firstrun&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>
-                  <button id="skip-button"> Skip This Step</button>
-              </div>
-          </div>
-
-            <img id="night-sky" src="/media/img/firefox/firstrun-horizon/night-scene/sky.png">
-            <img id="sky" src="/media/img/firefox/firstrun-horizon/day-scene/sky.png">
-            <img id="sunrise" src="/media/img/firefox/firstrun-horizon/day-scene/sun.png">
-            <img id="night-mountains-trees" src="/media/img/firefox/firstrun-horizon/night-scene/mountains-trees.png">
-            <img id="mountains-trees" src="/media/img/firefox/firstrun-horizon/day-scene/mountains-trees.png">
-            <img id="night-foreground-fox" src="/media/img/firefox/firstrun-horizon/night-scene/foreground-fox.png">
-            <img id="foreground-fox" src="/media/img/firefox/firstrun-horizon/day-scene/foreground-fox.png">
-            <img id="scene-blur" src="/media/img/firefox/firstrun-horizon/scene-blur.png">
-        </div>
-    </div>
+{% block site_js %}
+  {% javascript 'site' %}
+  {% javascript 'common' %}
+  {% javascript 'firefox_new_firstrun' %}
 {% endblock %}
 
-{% block site_js %}
-    {% javascript 'site' %}
-    {% javascript 'common' %}
-    {% javascript 'firefox_accounts' %}
-    {% javascript 'firefox_new_firstrun' %}
+{% block content %}
+  <div>
+    <div id="scene">
+      <div class="fxaccounts-container">
+        <h1 id="title">{{_('Already Using Firefox?')}}</h1>
+        <div id="left-divider">
+          <p>{{_('Sign in to your account and we\'ll sync the bookmarks, passwords and other great things you\'ve saved to Firefox on other devices.')}}</p>
+          <div>
+            <img src="{{ static('img/firefox/firstrun-horizon/sample.png') }}">
+          </div>
+          <a href="{{ url('firefox.sync') }}">{{_('Learn more about Firefox Accounts')}}</a>
+        </div>
+      <div class="fxaccounts" id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}">
+        <iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}signin?utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source=firstrun&amp;utm_content=fx-{{ version }}&amp;entrypoint=firstrun&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>
+        <button id="skip-button">{{_('Skip This Step')}}</button>
+      </div>
+    </div>
+
+      <img id="night-sky" alt=" Night Sky" src="{{ static('img/firefox/firstrun-horizon/night-scene/sky.png') }}">
+      <img id="sky" alt="Day Sky" src="{{ static('img/firefox/firstrun-horizon/day-scene/sky.png') }}">
+      <img id="sunrise" alt="Sun" src="{{ static('img/firefox/firstrun-horizon/day-scene/sun.png') }}">
+      <img id="night-mountains-trees" alt="Night Moutanins and Trees" src="{{ static('img/firefox/firstrun-horizon/night-scene/mountains-trees.png') }}">
+      <img id="mountains-trees" alt="Daytime Mountains and Trees" src="{{ static('img/firefox/firstrun-horizon/day-scene/mountains-trees.png') }}">
+      <img id="night-foreground-fox" alt="Night Foreground with a Fox" src="{{ static('img/firefox/firstrun-horizon/night-scene/foreground-fox.png') }}">
+      <img id="foreground-fox" alt="Day Foreground with a Fox" src="{{ static('img/firefox/firstrun-horizon/day-scene/foreground-fox.png') }}">
+      <img id="scene-blur" alt="Blurred Landscape" src="{{ static('img/firefox/firstrun-horizon/scene-blur.png') }}">
+    </div>
+  </div>
 {% endblock %}

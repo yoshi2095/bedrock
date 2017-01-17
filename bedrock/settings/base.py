@@ -1265,7 +1265,6 @@ CSP_STYLE_SRC = CSP_DEFAULT_SRC + (
     "'unsafe-inline'",
 )
 CSP_CHILD_SRC = (
-    'stomlinson.dev.lcip.org',
     '*.optimizely.com',
     'www.googletagmanager.com',
     'www.google-analytics.com',
