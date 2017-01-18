@@ -377,7 +377,7 @@ PIPELINE_CSS = {
             'css/firefox/firstrun/new-firstrun.less',
             'css/base/mozilla-fxa-iframe.less',
         ),
-            'output_filename': 'css/firefox_new-firstrun-bundle.css',
+        'output_filename': 'css/firefox_new-firstrun-bundle.css',
     },
     'firefox_firstrun': {
         'source_filenames': (
@@ -1258,9 +1258,9 @@ PIPELINE_JS = {
     },
     'firefox_new_firstrun': {
         'source_filenames': (
-            'js/firefox/firstrun/new-firstrun.js',
             'js/base/mozilla-fxa-iframe.js',
             'js/base/uitour-lib.js',
+            'js/firefox/firstrun/new-firstrun.js',
         ),
         'output_filename': 'js/firefox_new-firstrun-bundle.js',
     },

@@ -4,10 +4,10 @@
 
 (function (Mozilla) {
     'use strict';
-    let scene = document.getElementById('scene');
-    let skipbutton = document.getElementById('skip-button');
+    var scene = document.getElementById('scene');
+    var skipbutton = document.getElementById('skip-button');
 
-    let onVerificationComplete = function () {
+    var onVerificationComplete = function () {
         scene.dataset.signIn = 'true';
         document.getElementById('sunrise').addEventListener('transitionend', function(event) {
             if (event.propertyName === 'transform') {

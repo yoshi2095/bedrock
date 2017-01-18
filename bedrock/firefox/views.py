@@ -382,7 +382,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
         if detect_channel(version) == 'alpha':
             template = 'firefox/dev-firstrun.html'
         elif show_40_firstrun(version):
-                #New onboarding animation
+            # New onboarding animation funnecake
             if locale == 'en-US' and funnelcake == '99':
                 template = 'firefox/firstrun/new-firstrun.html'
             # Yahoo search retention funnelcake test
