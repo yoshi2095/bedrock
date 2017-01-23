@@ -383,7 +383,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
             template = 'firefox/dev-firstrun.html'
         elif show_40_firstrun(version):
             # New onboarding animation funnecake
-            if locale == 'en-US' and funnelcake == '99':
+            if locale == 'en-US' and funnelcake in ['99', '100']:
                 template = 'firefox/firstrun/new-firstrun.html'
             # Yahoo search retention funnelcake test
             elif locale == 'en-US' and funnelcake == '92':
