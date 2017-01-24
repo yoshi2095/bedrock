@@ -1,8 +1,23 @@
 @import "../../sandstone/lib.less";
-@import "../../sandstone/fira-fonts.less";
+
+@font-face {
+    font-family: 'Fira Sans Light';
+    src: url('/media/fonts/FiraSans-Light.woff2') format('woff2'),
+         url('/media/fonts/FiraSans-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira Sans Light';
+    src: url('/media/fonts/FiraSans-SemiBold.woff2') format('woff2'),
+         url('/media/fonts/FiraSans-SemiBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
 
 * {
-    .fira-sans-light;
+    font-family: 'Fira Sans Light';
 }
 
 img {
@@ -63,11 +78,11 @@ img {
 }
 
 #left-divider {
-  width: 300px;
-  height: 60%;
-  float: left;
-  margin: 79px 0;
-  position: relative;
+    width: 300px;
+    height: 60%;
+    float: left;
+    margin: 79px 0;
+    position: relative;
 
     img {
         position: relative;
@@ -128,8 +143,8 @@ img {
         padding: 3px 10px;
 
         &:hover {
-          background-color: #0670cc;
-          border-color: #005bab;
+            background-color: #0670cc;
+            border-color: #005bab;
         }
     }
 
@@ -164,7 +179,7 @@ img {
 #scene[data-sign-in=true] {
 
     .fxaccounts-container {
-       display: none;
+        display: none;
     }
 
     #scene-blur {
