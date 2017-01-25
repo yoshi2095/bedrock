@@ -94,7 +94,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
         }
     }
 
-    stage ('Build L10n') {
+    stage ('Push Images') {
         node {
             unstash 'scripts'
             try {
@@ -105,12 +105,6 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
             }
             utils.ircNotification(config, [stage: 'Docker Builds', status: 'complete'])
         }
-    }
-
-    stage ('Push Images') {
-        // push images to docker hub and internal registries
-        // FIXME(pmac) this should be dynamic based on which regions to which
-        //             this branch will be deployed
         parallel dockerhub: {
             node {
                 unstash 'scripts'
@@ -121,42 +115,42 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                 }
             }
         },
-        registry_usw: {
+        integration_tests: {
             node {
                 unstash 'scripts'
-                try {
-                    utils.pushPrivateReg(config.regions.usw.registry_port)
-                } catch(err) {
-                    utils.ircNotification(config, [stage: 'US-West Registry Push', status: 'failure'])
-                    throw err
-                }
+                unstash 'tests'
+                // prep for next stage
+                sh 'docker/jenkins/build_integration_test_image.sh'
             }
-        },
-        registry_euw: {
-            node {
-                unstash 'scripts'
-                try {
-                    utils.pushPrivateReg(config.regions.euw.registry_port)
-                } catch(err) {
-                    utils.ircNotification(config, [stage: 'EU-West Registry Push', status: 'failure'])
-                    throw err
-                }
-            }
-        }
-        node {
-            unstash 'scripts'
-            unstash 'tests'
-            // prep for next stage
-            sh 'docker/jenkins/build_integration_test_image.sh'
-            utils.ircNotification(config, [stage: 'Docker Image Pushes', status: 'complete'])
         }
     }
 
-    for (appname in branchConfig.apps) {
-        for (regionId in branchConfig.regions) {
-            def region = config.regions[regionId]
+    /**
+     * Do region first because deployment and testing should work like this:
+     * region1:
+     *   push image -> deploy app1 -> test app1 -> deploy app2 -> test app2
+     * region2:
+     *   push image -> deploy app1 -> test app1 -> deploy app2 -> test app2
+     *
+     * A failure at any step of the above should fail the entire job
+     */
+    for (regionId in branchConfig.regions) {
+        def region = config.regions[regionId]
+        def stageName = "Private Registry Push: ${region.name}"
+        stage (stageName) {
+            node {
+                unstash 'scripts'
+                try {
+                    utils.pushPrivateReg(region.registry_port)
+                } catch(err) {
+                    utils.ircNotification(config, [stage: stageName, status: 'failure'])
+                    throw err
+                }
+            }
+        }
+        for (appname in branchConfig.apps) {
             def appURL = "https://${appname}.${region.name}.moz.works"
-            def stageName = "Deploy ${appname}-${region.name}"
+            stageName = "Deploy ${appname}-${region.name}"
             // ensure no deploy/test cycle happens in parallel for an app/region
             lock (stageName) {
                 stage (stageName) {
