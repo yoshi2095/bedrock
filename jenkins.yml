@@ -9,6 +9,7 @@ branches:
       - firefox
       - headless
   prod:
+    require_tag: true
     regions:
       - usw
       - euw
