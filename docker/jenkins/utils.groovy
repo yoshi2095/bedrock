@@ -79,9 +79,7 @@ def integrationTestJob(propFileName, appName, region) {
                 withEnv(["BASE_URL=https://${appName}.${region}.moz.works",
                          "SELENIUM_VERSION=2.52.0"]) {
                     try {
-                        retry(2) {
-                            sh testScript
-                        }
+                        sh testScript
                     }
                     finally {
                         junit 'results/*.xml'
