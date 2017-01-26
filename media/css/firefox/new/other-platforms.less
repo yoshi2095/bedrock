@@ -64,7 +64,8 @@
 
         li {
             display: block;
-            margin: 0 0 10px;
+            line-height: 2;
+            margin: 0;
         }
 
         @media only screen and (max-width: @breakDesktop) {
@@ -84,10 +85,8 @@
         a:link,
         a:visited {
             .font-size(@largeFontSize);
-            background-image: url('/media/img/firefox/new/down-arrow-blue.svg');
-            background-position: left center;
-            background-repeat: no-repeat;
-            background-size: 20px 16px;
+            background: url('/media/img/firefox/new/down-arrow-blue.svg') left center no-repeat;
+            .background-size(20px 16px);
             color: @linkBlue;
             display: inline-block;
             padding-left: 24px;
