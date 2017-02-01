@@ -38,7 +38,7 @@ img {
     z-index: 3;
 }
 
-#scene-blur, #mountains-trees, #foreground-fox, #sky {
+#scene-blur, #mountains, #trees, #foreground-fox, #sky {
     opacity: 0;
 }
 
@@ -150,24 +150,24 @@ img {
     }
 
     #sunrise {
-        transition: transform 1.5s cubic-bezier(.41,.61,.54,.96) 0.5s;
+        transition: transform 1.7s cubic-bezier(.41,.61,.54,.96) .5s;
         transform: none;
     }
 
-    #mountains-trees, #foreground-fox, #sky {
-        transition: opacity 2s ease-in-out .5s;
+    #mountains, #trees, #foreground-fox, #sky {
+        transition: opacity 2.3s ease-in-out .9s;
         opacity: 1;
     }
 }
 
 #scene[data-modal=true] {
 
-    #night-sky, #night-mountains-trees, #night-foreground-fox {
+    #night-sky, #night-mountains, #night-trees, #night-foreground-fox {
         display: none;
     }
 
     #scene-blur {
-        transition: opacity .5s;
+        transition: opacity .7s;
         opacity: 1;
     }
 
@@ -187,9 +187,9 @@ img {
         opacity: 0;
     }
 
-    #sunrise, #sky, #mountains-trees, #foreground-fox {
+    #sunrise, #sky, #mountains, #trees, #foreground-fox {
         opacity: 1;
-        transition: transform 1.5s ease-in-out .2s;
+        transition: transform 2s cubic-bezier(.9,.03,.60,.22) .3s;
     }
 
     #sunrise {
@@ -201,11 +201,15 @@ img {
         transform: scale(4);
     }
 
-    #mountains-trees {
-        transform: scale(2) translate3d(0, 30%, 0);
+    #mountains {
+        transform: scale(2) translate3d(0, 38%, 0);
+    }
+
+    #trees {
+        transform: scale(2) translate3d(0, 34%, 0);
     }
 
     #foreground-fox {
-        transform: scale(3) translate3d(0, 30%, 0)
+        transform: scale(2.5) translate3d(0, 28%, 0)
     }
 }
