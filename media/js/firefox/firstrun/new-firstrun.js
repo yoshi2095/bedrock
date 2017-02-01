@@ -20,6 +20,10 @@
             }, false);
         };
 
+        var hideSkipButton = function () {
+            skipbutton.style.display = 'none';
+        };
+
         skipbutton.onclick = onVerificationComplete;
 
         Mozilla.Client.getFirefoxDetails(function(data) {
@@ -27,7 +31,8 @@
                 distribution: data.distribution,
                 gaEventName: 'firstrun-fxa',
                 onVerificationComplete: onVerificationComplete,
-                onLogin: onVerificationComplete
+                onLogin: onVerificationComplete,
+                onSignupMustVerify: hideSkipButton
             });
         });
 
